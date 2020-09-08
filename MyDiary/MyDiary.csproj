@@ -101,5 +101,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLib\DataAccessLib.csproj">
+      <Project>{f4801a71-89aa-4614-8ccd-718e9bfc0926}</Project>
+      <Name>DataAccessLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

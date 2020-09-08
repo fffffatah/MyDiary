@@ -42,17 +42,17 @@
             this.lnameLabel = new System.Windows.Forms.Label();
             this.fnameLabel = new System.Windows.Forms.Label();
             this.loginGroupBox = new System.Windows.Forms.GroupBox();
-            this.signupLnameTextBox = new System.Windows.Forms.TextBox();
-            this.loginPhoneLabel = new System.Windows.Forms.Label();
-            this.loginPassLabel = new System.Windows.Forms.Label();
-            this.loginPassTextBox = new System.Windows.Forms.TextBox();
-            this.loginPhoneTextBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
+            this.loginPhoneTextBox = new System.Windows.Forms.TextBox();
+            this.loginPassTextBox = new System.Windows.Forms.TextBox();
+            this.loginPassLabel = new System.Windows.Forms.Label();
+            this.loginPhoneLabel = new System.Windows.Forms.Label();
+            this.signupLnameTextBox = new System.Windows.Forms.TextBox();
             this.otpGroupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.otpTextBox = new System.Windows.Forms.TextBox();
-            this.submitButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.submitButton = new System.Windows.Forms.Button();
+            this.otpTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.signupGroupBox.SuspendLayout();
             this.loginGroupBox.SuspendLayout();
             this.otpGroupBox.SuspendLayout();
@@ -224,57 +224,6 @@
             this.loginGroupBox.TabStop = false;
             this.loginGroupBox.Text = "Login";
             // 
-            // signupLnameTextBox
-            // 
-            this.signupLnameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.signupLnameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.signupLnameTextBox.Location = new System.Drawing.Point(204, 109);
-            this.signupLnameTextBox.Name = "signupLnameTextBox";
-            this.signupLnameTextBox.Size = new System.Drawing.Size(235, 23);
-            this.signupLnameTextBox.TabIndex = 15;
-            this.signupLnameTextBox.TextChanged += new System.EventHandler(this.signupLnameTextBox_TextChanged);
-            // 
-            // loginPhoneLabel
-            // 
-            this.loginPhoneLabel.AutoSize = true;
-            this.loginPhoneLabel.Location = new System.Drawing.Point(32, 36);
-            this.loginPhoneLabel.Name = "loginPhoneLabel";
-            this.loginPhoneLabel.Size = new System.Drawing.Size(103, 17);
-            this.loginPhoneLabel.TabIndex = 3;
-            this.loginPhoneLabel.Text = "Phone Number";
-            // 
-            // loginPassLabel
-            // 
-            this.loginPassLabel.AutoSize = true;
-            this.loginPassLabel.Location = new System.Drawing.Point(66, 84);
-            this.loginPassLabel.Name = "loginPassLabel";
-            this.loginPassLabel.Size = new System.Drawing.Size(69, 17);
-            this.loginPassLabel.TabIndex = 4;
-            this.loginPassLabel.Text = "Password";
-            // 
-            // loginPassTextBox
-            // 
-            this.loginPassTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.loginPassTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginPassTextBox.Location = new System.Drawing.Point(156, 82);
-            this.loginPassTextBox.Name = "loginPassTextBox";
-            this.loginPassTextBox.PasswordChar = '*';
-            this.loginPassTextBox.Size = new System.Drawing.Size(235, 23);
-            this.loginPassTextBox.TabIndex = 5;
-            this.loginPassTextBox.TextChanged += new System.EventHandler(this.loginPassTextBox_TextChanged);
-            // 
-            // loginPhoneTextBox
-            // 
-            this.loginPhoneTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.loginPhoneTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginPhoneTextBox.Location = new System.Drawing.Point(156, 34);
-            this.loginPhoneTextBox.MaxLength = 11;
-            this.loginPhoneTextBox.Name = "loginPhoneTextBox";
-            this.loginPhoneTextBox.Size = new System.Drawing.Size(235, 23);
-            this.loginPhoneTextBox.TabIndex = 18;
-            this.loginPhoneTextBox.TextChanged += new System.EventHandler(this.loginPhoneTextBox_TextChanged);
-            this.loginPhoneTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.loginPhoneTextBox_KeyPress);
-            // 
             // loginButton
             // 
             this.loginButton.BackColor = System.Drawing.Color.MediumSlateBlue;
@@ -292,6 +241,57 @@
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
+            // loginPhoneTextBox
+            // 
+            this.loginPhoneTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.loginPhoneTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginPhoneTextBox.Location = new System.Drawing.Point(156, 34);
+            this.loginPhoneTextBox.MaxLength = 11;
+            this.loginPhoneTextBox.Name = "loginPhoneTextBox";
+            this.loginPhoneTextBox.Size = new System.Drawing.Size(235, 23);
+            this.loginPhoneTextBox.TabIndex = 18;
+            this.loginPhoneTextBox.TextChanged += new System.EventHandler(this.loginPhoneTextBox_TextChanged);
+            this.loginPhoneTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.loginPhoneTextBox_KeyPress);
+            // 
+            // loginPassTextBox
+            // 
+            this.loginPassTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.loginPassTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginPassTextBox.Location = new System.Drawing.Point(156, 82);
+            this.loginPassTextBox.Name = "loginPassTextBox";
+            this.loginPassTextBox.PasswordChar = '*';
+            this.loginPassTextBox.Size = new System.Drawing.Size(235, 23);
+            this.loginPassTextBox.TabIndex = 5;
+            this.loginPassTextBox.TextChanged += new System.EventHandler(this.loginPassTextBox_TextChanged);
+            // 
+            // loginPassLabel
+            // 
+            this.loginPassLabel.AutoSize = true;
+            this.loginPassLabel.Location = new System.Drawing.Point(66, 84);
+            this.loginPassLabel.Name = "loginPassLabel";
+            this.loginPassLabel.Size = new System.Drawing.Size(69, 17);
+            this.loginPassLabel.TabIndex = 4;
+            this.loginPassLabel.Text = "Password";
+            // 
+            // loginPhoneLabel
+            // 
+            this.loginPhoneLabel.AutoSize = true;
+            this.loginPhoneLabel.Location = new System.Drawing.Point(32, 36);
+            this.loginPhoneLabel.Name = "loginPhoneLabel";
+            this.loginPhoneLabel.Size = new System.Drawing.Size(103, 17);
+            this.loginPhoneLabel.TabIndex = 3;
+            this.loginPhoneLabel.Text = "Phone Number";
+            // 
+            // signupLnameTextBox
+            // 
+            this.signupLnameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.signupLnameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signupLnameTextBox.Location = new System.Drawing.Point(204, 109);
+            this.signupLnameTextBox.Name = "signupLnameTextBox";
+            this.signupLnameTextBox.Size = new System.Drawing.Size(235, 23);
+            this.signupLnameTextBox.TabIndex = 15;
+            this.signupLnameTextBox.TextChanged += new System.EventHandler(this.signupLnameTextBox_TextChanged);
+            // 
             // otpGroupBox
             // 
             this.otpGroupBox.Controls.Add(this.cancelButton);
@@ -306,25 +306,18 @@
             this.otpGroupBox.Text = "Verification";
             this.otpGroupBox.Visible = false;
             // 
-            // label1
+            // cancelButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(68, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(328, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Please Enter the OTP Sent to Your Phone Number";
-            // 
-            // otpTextBox
-            // 
-            this.otpTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otpTextBox.Location = new System.Drawing.Point(71, 65);
-            this.otpTextBox.MaxLength = 6;
-            this.otpTextBox.Name = "otpTextBox";
-            this.otpTextBox.Size = new System.Drawing.Size(124, 26);
-            this.otpTextBox.TabIndex = 1;
-            this.otpTextBox.TextChanged += new System.EventHandler(this.otpTextBox_TextChanged);
-            this.otpTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.otpTextBox_KeyPress);
+            this.cancelButton.BackColor = System.Drawing.Color.DeepPink;
+            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelButton.ForeColor = System.Drawing.Color.White;
+            this.cancelButton.Location = new System.Drawing.Point(320, 62);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 32);
+            this.cancelButton.TabIndex = 3;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = false;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // submitButton
             // 
@@ -340,18 +333,25 @@
             this.submitButton.UseVisualStyleBackColor = false;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
-            // cancelButton
+            // otpTextBox
             // 
-            this.cancelButton.BackColor = System.Drawing.Color.DeepPink;
-            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelButton.ForeColor = System.Drawing.Color.White;
-            this.cancelButton.Location = new System.Drawing.Point(320, 62);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 32);
-            this.cancelButton.TabIndex = 3;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = false;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.otpTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otpTextBox.Location = new System.Drawing.Point(71, 65);
+            this.otpTextBox.MaxLength = 6;
+            this.otpTextBox.Name = "otpTextBox";
+            this.otpTextBox.Size = new System.Drawing.Size(124, 26);
+            this.otpTextBox.TabIndex = 1;
+            this.otpTextBox.TextChanged += new System.EventHandler(this.otpTextBox_TextChanged);
+            this.otpTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.otpTextBox_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(68, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(328, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Please Enter the OTP Sent to Your Phone Number";
             // 
             // Login
             // 
@@ -367,6 +367,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyDiary - Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
             this.signupGroupBox.ResumeLayout(false);
             this.signupGroupBox.PerformLayout();
             this.loginGroupBox.ResumeLayout(false);

@@ -16,6 +16,7 @@ namespace MyDiary
         public Login()
         {
             InitializeComponent();
+            DataAccessLib.OpenConnectionOnStart.Open();
         }
 
         private void SetSignupButtonStatus()
@@ -145,11 +146,14 @@ namespace MyDiary
             new CommonValidation().CheckForInternetConnection(this);
             if (otpTextBox.Text.Equals(otp.ToString()))
             {
+                otpGroupBox.Visible = false;
+                signupGroupBox.Enabled = true;
                 //TO-DO
+                
             }
             else
             {
-                //TO-DO
+                MessageBox.Show("Account Creation Failed!\nPlease Check Your Internet Connection!", "Error");
             }
         }
 
@@ -157,6 +161,14 @@ namespace MyDiary
         {
             otpGroupBox.Visible = false;
             signupGroupBox.Enabled = true;
+        }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DataAccessLib.OpenConnectionOnStart.Close();
+            this.Dispose();
+            Application.Exit();
+            Environment.Exit(0);
         }
     }
 }

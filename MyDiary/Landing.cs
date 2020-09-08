@@ -16,5 +16,13 @@ namespace MyDiary
         {
             InitializeComponent();
         }
+
+        private void Landing_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DataAccessLib.OpenConnectionOnStart.Close();
+            this.Dispose();
+            Application.Exit();
+            Environment.Exit(0);
+        }
     }
 }
