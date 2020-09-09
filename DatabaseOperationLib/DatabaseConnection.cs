@@ -5,38 +5,51 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace DatabaseOperationLib
 {
-    public static class DatabaseConnection
+    public class DatabaseConnection:IDisposable
     {
-        static SqlConnection con;
-        static SqlCommand command;
+        SqlConnection con;
+        SqlCommand command;
 
-        public static void InitiateConnection()
+        public DatabaseConnection()
         {
             con = new SqlConnection(ConfigurationManager.ConnectionStrings["AzureDb"].ConnectionString);
             con.Open();
+            command = new SqlCommand();
             command.Connection = con;
         }
 
-        public static void CloseConnection()
+        public void CreateQuery(string query)
         {
-            con.Close();
-            command.Dispose();
-            con.Dispose();
+            command.CommandText = query;
+            command.CommandTimeout = 15;
+            command.CommandType = CommandType.Text;
         }
 
-        public static SqlDataReader Query(string sql)
+        public void Dispose()
         {
-            command.CommandText = sql;
+            con.Close();
+        }
+
+        public SqlDataReader DoQuery()
+        {
             return command.ExecuteReader();
         }
 
-        public static int NonQuery(string sql)
+        public int DoNoQuery()
         {
-            command.CommandText = sql;
-            return command.ExecuteNonQuery();
+            try
+            {
+                return command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+            }
+            return -1;
         }
     }
 }

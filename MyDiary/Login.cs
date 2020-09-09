@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataAccessLib;
 
 namespace MyDiary
 {
     public partial class Login : Form
     {
         int otp;
+        string dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\MyDiary\Images";
         public Login()
         {
             InitializeComponent();
-            DataAccessLib.OpenConnectionOnStart.Open();
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
         }
 
         private void SetSignupButtonStatus()
@@ -87,8 +93,10 @@ namespace MyDiary
             {
                 signupGroupBox.Enabled = false;
                 otpGroupBox.Visible = true;
-                otp = GenerateOtp();
-                new OtpSender().Send(otp, signupPhoneTextBox.Text);
+                //otp = GenerateOtp();
+                //new OtpSender().Send(otp, signupPhoneTextBox.Text);
+                otp = 123456;
+
             }
             else
             {
@@ -125,7 +133,20 @@ namespace MyDiary
         private void loginButton_Click(object sender, EventArgs e)
         {
             new CommonValidation().CheckForInternetConnection(this);
-            //TO-DO
+            UserDataAccess userDataAccess = new UserDataAccess();
+            User user = new User();
+            user = userDataAccess.GetUser(loginPhoneTextBox.Text, loginPassTextBox.Text);
+            if(user.FirstName.Length > 0)
+            {
+                this.Hide();
+                var Landing = new Landing(user);
+                Landing.Closed += (s, args) => this.Close();
+                Landing.Show();
+            }
+            else
+            {
+                MessageBox.Show("Account Not Found!\nPlease Re-Check Phone Number or Password", "Error");
+            }
         }
 
         private void otpTextBox_TextChanged(object sender, EventArgs e)
@@ -148,27 +169,46 @@ namespace MyDiary
             {
                 otpGroupBox.Visible = false;
                 signupGroupBox.Enabled = true;
-                //TO-DO
-                
+                User user = new User();
+                user.FirstName = signupFnameTextBox.Text;
+                user.LastName = signupLnameTextBox.Text;
+                user.Password = signupPassTextBox.Text;
+                user.PhoneNumber = signupPhoneTextBox.Text;
+                UserDataAccess userDataAccess = new UserDataAccess();
+                if (userDataAccess.DoesPhoneNumberExists(signupPhoneTextBox.Text))
+                {
+                    MessageBox.Show("An Account Associated with this Phone Number Already Exists!\nTry Logging In","Error");
+                }
+                else
+                {
+                    if (userDataAccess.CreateUser(user))
+                    {
+                        MessageBox.Show("Account Creation Successful!\nPlease Log In.","Successful");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Account Creation Failed!\nPlease Check Your Internet Connection!", "Error");
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("Account Creation Failed!\nPlease Check Your Internet Connection!", "Error");
+                MessageBox.Show("Account Creation Failed!\nPlease Input Valid OTP!", "Error");
             }
+            signupGroupBox.Enabled = true;
+            otpGroupBox.Visible = false;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
+            new CommonValidation().CheckForInternetConnection(this);
             otpGroupBox.Visible = false;
             signupGroupBox.Enabled = true;
         }
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
-            DataAccessLib.OpenConnectionOnStart.Close();
             this.Dispose();
-            Application.Exit();
-            Environment.Exit(0);
         }
     }
 }
