@@ -28,6 +28,8 @@ namespace DataAccessLib
                 content.Priority = reader["Priority"].ToString();
                 list.Add(content);
             }
+            dbConnection.Dispose();
+            dbConnection = null;
             return list;
         }
         
