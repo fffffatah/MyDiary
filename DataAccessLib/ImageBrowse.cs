@@ -10,17 +10,9 @@ namespace DataAccessLib
 {
     public class ImageBrowse
     {
-        private string GetRandomImageName(string phoneNumber)
+        private string GetRandomImageName()
         {
-            StringBuilder builder = new StringBuilder();
-            string date = new DateTime(2012, 12, 25, 10, 30, 50).ToString();
-            for (int i = 0; i < phoneNumber.Length; i++)
-            {
-                builder.Append(phoneNumber[i]);
-                builder.Append(date[i]);
-            }
-
-            return builder.ToString();
+            return DateTime.Now.ToString("yyyyMMddHHmmss");
         }
 
         public string GetImagePath(string phoneNumber)
@@ -34,7 +26,7 @@ namespace DataAccessLib
             if (fdlg.ShowDialog() == DialogResult.OK)
             {
                 string sourceFile = fdlg.FileName;
-                string destinationFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\MyDiary\Images\" + GetRandomImageName(phoneNumber) + ".png";
+                string destinationFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\MyDiary\Images\" + GetRandomImageName() + ".png";
                 try
                 {
                     File.Copy(sourceFile, destinationFile, true);

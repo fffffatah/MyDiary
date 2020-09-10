@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Twilio;
@@ -14,6 +15,10 @@ namespace MyDiary
         public void Send(int otp, string phoneNumber)
         {
             TwilioClient.Init(ConfigurationManager.AppSettings.Get("twilioAccountSid"), ConfigurationManager.AppSettings.Get("twilioAuthToken"));
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                                                | SecurityProtocolType.Tls11
+                                                | SecurityProtocolType.Tls12
+                                                | SecurityProtocolType.Ssl3;
             var message = MessageResource.Create(
                 body: "Your OTP for MyDiary Signup is: " + otp,
                 from: new Twilio.Types.PhoneNumber(ConfigurationManager.AppSettings.Get("twilioPhoneNumber")),

@@ -91,11 +91,18 @@ namespace MyDiary
             new CommonValidation().CheckForInternetConnection(this);
             if (ComparePasswordBoxes())
             {
-                signupGroupBox.Enabled = false;
-                otpGroupBox.Visible = true;
-                otp = GenerateOtp();
-                new OtpSender().Send(otp, signupPhoneTextBox.Text);
-
+                UserDataAccess userDataAccess = new UserDataAccess();
+                if (userDataAccess.DoesPhoneNumberExists(signupPhoneTextBox.Text))
+                {
+                    MessageBox.Show("An Account Associated with this Phone Number Already Exists!\nTry Logging In", "Error");
+                }
+                else
+                {
+                    signupGroupBox.Enabled = false;
+                    otpGroupBox.Visible = true;
+                    otp = GenerateOtp();
+                    new OtpSender().Send(otp, signupPhoneTextBox.Text);
+                }
             }
             else
             {
@@ -135,7 +142,7 @@ namespace MyDiary
             UserDataAccess userDataAccess = new UserDataAccess();
             User user = new User();
             user = userDataAccess.GetUser(loginPhoneTextBox.Text, loginPassTextBox.Text);
-            if(user.FirstName.Length > 0)
+            if(user.FirstName != null)
             {
                 this.Hide();
                 var Landing = new Landing(user);

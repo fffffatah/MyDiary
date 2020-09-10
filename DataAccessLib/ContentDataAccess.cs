@@ -67,7 +67,7 @@ namespace DataAccessLib
         public bool DeleteEvent(string contentId)
         {
             dbConnection = new DatabaseConnection();
-            dbConnection.CreateQuery("DELETE FROM Contents WHERE Id=" + contentId + "; DELETE FROM Images WHERE Id = " + contentId);
+            dbConnection.CreateQuery("DELETE FROM Contents WHERE Id=" + contentId + ";\nDELETE FROM Images WHERE Id = " + contentId+";");
             if ((dbConnection.DoNoQuery()) < 1)
             {
                 dbConnection.Dispose();
