@@ -53,11 +53,5 @@ namespace DataAccessLib
             dbConnection = null;
             return flag;
         }
-
-        public bool UpdatePassword()
-        {
-            //TO-DO
-            return true;
-        }
     }
 }
