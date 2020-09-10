@@ -21,6 +21,7 @@ namespace DataAccessLib
             while (reader.Read())
             {
                 Content content = new Content();
+                content.Id = reader["Id"].ToString();
                 content.Title = reader["Title"].ToString();
                 content.Text = reader["Text"].ToString();
                 content.DateCreated = reader["DateCreated"].ToString();
@@ -33,16 +34,49 @@ namespace DataAccessLib
             return list;
         }
         
-        public bool AddEvent()
+        public bool AddEvent(Content content, User user)
         {
-            //TODO
-            return false;
+            dbConnection = new DatabaseConnection();
+            dbConnection.CreateQuery("INSERT INTO Contents(Title, Text, DateCreated, DateModified, Phone, Priority) VALUES('"+content.Title+"','"+content.Text+"','"+DateTime.Now.ToString("dd-MM-yyyy")+ "','" + DateTime.Now.ToString("dd-MM-yyyy") + "','"+user.PhoneNumber+"','"+content.Priority+"')");
+            if ((dbConnection.DoNoQuery()) < 1)
+            {
+                dbConnection.Dispose();
+                dbConnection = null;
+                return false;
+            }
+            dbConnection.Dispose();
+            dbConnection = null;
+            return true;
         }
 
-        public bool UpdateEvent()
+        public bool UpdateEvent(Content content)
         {
-            //TODO
-            return false;
+            dbConnection = new DatabaseConnection();
+            dbConnection.CreateQuery("UPDATE Contents SET Title='"+content.Title+"', Text='"+content.Text+"', DateModified='"+content.DateModified+"', Priority='"+content.Priority+"' WHERE Id="+content.Id);
+            if ((dbConnection.DoNoQuery()) < 1)
+            {
+                dbConnection.Dispose();
+                dbConnection = null;
+                return false;
+            }
+            dbConnection.Dispose();
+            dbConnection = null;
+            return true;
+        }
+
+        public bool DeleteEvent(string contentId)
+        {
+            dbConnection = new DatabaseConnection();
+            dbConnection.CreateQuery("DELETE FROM Contents WHERE Id=" + contentId + "; DELETE FROM Images WHERE Id = " + contentId);
+            if ((dbConnection.DoNoQuery()) < 1)
+            {
+                dbConnection.Dispose();
+                dbConnection = null;
+                return false;
+            }
+            dbConnection.Dispose();
+            dbConnection = null;
+            return true;
         }
     }
 }

@@ -93,9 +93,8 @@ namespace MyDiary
             {
                 signupGroupBox.Enabled = false;
                 otpGroupBox.Visible = true;
-                //otp = GenerateOtp();
-                //new OtpSender().Send(otp, signupPhoneTextBox.Text);
-                otp = 123456;
+                otp = GenerateOtp();
+                new OtpSender().Send(otp, signupPhoneTextBox.Text);
 
             }
             else

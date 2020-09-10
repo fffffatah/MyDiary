@@ -8,6 +8,6 @@ namespace DataAccessLib
 {
     public class Images
     {
-        public string ImageLocation { get; set; }
+        public string FirstImageLocation { get; set; }
     }
 }
