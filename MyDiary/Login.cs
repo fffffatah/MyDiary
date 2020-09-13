@@ -43,7 +43,7 @@ namespace MyDiary
 
         private int GenerateOtp()
         {
-            return new Random().Next(0, 999999);
+            return new Random().Next(100000, 999999);
         }
 
         private void signupFnameTextBox_TextChanged(object sender, EventArgs e)
@@ -97,11 +97,17 @@ namespace MyDiary
                     MessageBox.Show("An Account Associated with this Phone Number Already Exists!\nTry Logging In", "Error");
                 }
                 else
-                {
-                    signupGroupBox.Enabled = false;
-                    otpGroupBox.Visible = true;
+                {                  
                     otp = GenerateOtp();
-                    new OtpSender().Send(otp, signupPhoneTextBox.Text);
+                    if(new OtpSender().Send(otp, signupPhoneTextBox.Text))
+                    {
+                        signupGroupBox.Enabled = false;
+                        otpGroupBox.Visible = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Phone Number!", "Failed");
+                    }
                 }
             }
             else

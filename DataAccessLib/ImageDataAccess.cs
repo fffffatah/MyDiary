@@ -16,17 +16,15 @@ namespace DataAccessLib
         {
             dbConnection = new DatabaseConnection();
             dbConnection.CreateQuery("SELECT Image FROM Images WHERE Id='" + contentId + "'");
-            List<Images> list = new List<Images>();
+            string path="";
             SqlDataReader reader = dbConnection.DoQuery();
             if (reader.Read())
             {
-                Images images = new Images();
-                images.FirstImageLocation = reader["Image"].ToString();
-                list.Add(images);
+                path = reader["Image"].ToString();
             }
             dbConnection.Dispose();
             dbConnection = null;
-            return list[0].FirstImageLocation;
+            return path;
         }
 
         public bool AddImages(Images images, Content content)

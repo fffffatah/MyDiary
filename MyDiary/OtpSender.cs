@@ -12,18 +12,27 @@ namespace MyDiary
 {
     public class OtpSender
     {
-        public void Send(int otp, string phoneNumber)
+        public bool Send(int otp, string phoneNumber)
         {
             TwilioClient.Init(ConfigurationManager.AppSettings.Get("twilioAccountSid"), ConfigurationManager.AppSettings.Get("twilioAuthToken"));
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
                                                 | SecurityProtocolType.Tls11
                                                 | SecurityProtocolType.Tls12
                                                 | SecurityProtocolType.Ssl3;
-            var message = MessageResource.Create(
+            try
+            {
+                var message = MessageResource.Create(
                 body: "Your OTP for MyDiary Signup is: " + otp,
                 from: new Twilio.Types.PhoneNumber(ConfigurationManager.AppSettings.Get("twilioPhoneNumber")),
                 to: new Twilio.Types.PhoneNumber("+88" + phoneNumber)
             );
+            }
+            catch(Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return false;
+            }
+            return true;
         }
     }
 }

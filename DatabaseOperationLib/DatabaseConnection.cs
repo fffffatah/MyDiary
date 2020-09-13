@@ -43,7 +43,7 @@ namespace DatabaseOperationLib
             }
             catch (Exception e)
             {
-                Console.Write(e.StackTrace);
+                Console.Write(e.Message);
             }
             return -1;
         }
